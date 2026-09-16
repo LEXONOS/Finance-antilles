@@ -25,13 +25,15 @@ assets/img/hero.jpg            image affichée pendant le chargement de la vidé
 assets/img/girardin.jpg        pelleteuse
 assets/img/contact.jpg         vue aérienne des Antilles
 assets/img/logo.png            vrai logo détouré (fond transparent)
-assets/img/logo-blanc.png      version blanche (pied de page, écran de chargement)
+assets/img/logo-blanc.png      version blanche (pied de page)
 assets/img/og.jpg              image de partage WhatsApp / Facebook
 favicon.png, apple-touch-icon.png : icônes onglet et iPhone
 
 La vidéo ne se lance pas si le visiteur a activé "économie de données"
 ou "réduire les animations" : l'image hero.jpg s'affiche à la place.
-L'écran de chargement ne s'affiche qu'à la première page vue de la visite.
+Écran de chargement : logo vectoriel intégré dans la page (s'affiche même hors ligne),
+la vidéo se télécharge pendant ce temps, puis ouverture en tourbillon (1 à 3 s max).
+Le site marche aussi en ouvrant index.html directement depuis le dossier (chemins relatifs).
 
 A FAIRE VALIDER PAR ALEXANDRE
 - Étapes 3 et 4 du bloc "Le Girardin, en clair" (formulation volontairement générale).

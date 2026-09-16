@@ -11,36 +11,52 @@
     words.forEach(function(w, i){
       var o = document.createElement("span"); o.className = "w"; o.setAttribute("aria-hidden","true");
       var n = document.createElement("span"); n.textContent = w;
-      n.style.transitionDelay = (0.05 + i * 0.07) + "s";
+      n.style.transitionDelay = (0.25 + i * 0.07) + "s";
       o.appendChild(n); h1.appendChild(o);
       if(i < words.length - 1) h1.appendChild(document.createTextNode(" "));
     });
   }
-  function go(){ document.body.classList.add("ready"); startVideo(); }
-  function finish(){
-    if(!loader || loader.classList.contains("skip") || getComputedStyle(loader).display === "none"){ go(); return; }
-    var wait = Math.max(0, 950 - (Date.now() - start));
-    setTimeout(function(){
-      loader.classList.add("out");
-      setTimeout(go, 120);
-      setTimeout(function(){ loader.remove(); }, 800);
-      try{ sessionStorage.setItem("fa_seen","1"); }catch(e){}
-    }, wait);
-  }
-  var fired = false;
-  function once(){ if(!fired){ fired = true; finish(); } }
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(once); } else { once(); }
-  setTimeout(once, 1600);
+  function go(){ document.body.classList.add("ready"); }
 
-  /* Vidéo du hero : chargée après l'intro, version légère sur mobile, rien si économie de données */
-  function startVideo(){
-    var v = document.getElementById("heroVideo");
-    if(!v || v.dataset.on) return;
-    v.dataset.on = "1";
-    var save = navigator.connection && navigator.connection.saveData;
-    if(rm || save) return;
-    v.src = window.matchMedia("(max-width: 700px)").matches ? v.dataset.srcMobile : v.dataset.src;
-    var p = v.play(); if(p && p.catch) p.catch(function(){});
+  if(!loader || rm || getComputedStyle(loader).display === "none"){
+    if(loader) loader.remove();
+    go();
+  } else {
+    var bar = document.getElementById("ldBar"), pct = document.getElementById("ldPct");
+    var video = document.getElementById("heroVideo");
+    var MIN = 1100, MAX = 3200, shown = 0, ready = false, done = false;
+    var setP = function(p){
+      p = Math.max(shown, Math.min(100, p));
+      shown = p;
+      bar.style.transform = "scaleX(" + (p / 100) + ")";
+      pct.textContent = Math.round(p);
+    };
+    var mediaReady = function(){ ready = true; };
+    if(video && video.getAttribute("src")){
+      if(video.readyState >= 3) mediaReady();
+      video.addEventListener("canplay", mediaReady, {once:true});
+      video.addEventListener("error", mediaReady, {once:true});
+    } else {
+      var img = new Image(); img.onload = img.onerror = mediaReady; img.src = "assets/img/hero.jpg";
+    }
+    var tick = function(){
+      if(done) return;
+      var t = Date.now() - start;
+      /* progression : suit le temps, bloque à 90 % tant que le média n'est pas prêt */
+      var target = Math.min(ready ? 100 : 90, t / MIN * 100);
+      setP(shown + (target - shown) * .25);
+      if((ready && t >= MIN && shown > 99) || t >= MAX){
+        done = true; setP(100);
+        setTimeout(function(){
+          loader.classList.add("out");
+          setTimeout(go, 280);
+          setTimeout(function(){ loader.remove(); }, 1300);
+        }, 150);
+        return;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
 })();
 
