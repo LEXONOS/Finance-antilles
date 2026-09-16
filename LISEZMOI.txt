@@ -1,0 +1,52 @@
+FINANCIA ANTILLES - SITE VITRINE
+================================
+
+MISE EN LIGNE (GitHub + Vercel)
+1. Dézipper, glisser TOUT le contenu à la racine du repo GitHub (pas le dossier lui-même).
+2. Vercel > Add New > Project > importer le repo > Framework : "Other" > Deploy.
+3. Vercel > Settings > Domains > ajouter financia-antilles.fr et www.financia-antilles.fr,
+   puis recopier les enregistrements DNS affichés chez le registrar du domaine.
+
+ARBORESCENCE
+index.html               accueil
+mentions-legales.html    mentions légales (URL : /mentions-legales)
+confidentialite.html     RGPD (URL : /confidentialite)
+404.html                 page d'erreur
+css/style.css            tout le style
+js/main.js               orienteur WhatsApp, animations, menu mobile
+assets/fonts/            Montserrat hébergée en local (pas de Google Fonts = pas de bandeau cookies)
+assets/img/              images (voir ci-dessous)
+favicon.svg, robots.txt, sitemap.xml, vercel.json
+
+IMAGES A DEPOSER DANS assets/img/ (noms EXACTS, en .jpg, compressées sur squoosh.app)
+Tant qu'une image manque, le site s'affiche proprement sans elle.
+
+hero.jpg        2000 x 1200, < 350 Ko
+                Récolte de canne à sucre, engin agricole au champ, ou chantier avec engins.
+                Recherche Unsplash : "sugarcane harvest", "tractor field", "excavator construction site"
+                Idéal : la photo de la couverture de la plaquette (demander l'original à CitronMer Communication).
+
+girardin.jpg    1200 x 900, < 250 Ko
+                Matériel neuf : pelleteuse, chariot élévateur, camion, four de boulangerie.
+                Unsplash : "excavator", "forklift warehouse", "industrial machinery"
+
+contact.jpg     1200 x 900, < 250 Ko (affichée assombrie derrière les coordonnées)
+                Vue de Guadeloupe ou de la marina, ou photo des bureaux / d'Alexandre.
+                Unsplash : "Guadeloupe", "caribbean coast town"
+                Idéal : la photo aérienne du dos de la plaquette.
+
+logo.png        logo couleur, fond transparent, ~480 px de large (s'affiche à la place du logo recréé)
+logo-blanc.png  même logo en version blanche pour le pied de page
+
+og.jpg / apple-touch-icon.png : déjà fournis (image de partage WhatsApp/Facebook et icône iPhone).
+
+Si les photos ne viennent PAS d'Unsplash, modifier la ligne "Crédits photographiques"
+dans mentions-legales.html.
+
+A FAIRE VALIDER PAR ALEXANDRE
+- Étapes 3 et 4 du bloc "Le Girardin, en clair" (formulation volontairement générale).
+- Tranches de montant de l'orienteur (moins de 50 k, 50 à 200 k, plus de 200 k).
+- Statut : l'ORIAS ne montre que COBSP. Le site ne parle donc pas de courtage en assurance,
+  de conseil en investissement (CIF) ni de "gestion de patrimoine" (présent sur sa carte de visite).
+  S'il a d'autres immatriculations, on les ajoute.
+- Adhésion Anacofi (mentionnée sur la plaquette).
