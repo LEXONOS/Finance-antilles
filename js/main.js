@@ -1,4 +1,50 @@
 (function(){
+  /* ===== Chargement + intro ===== */
+  var loader = document.getElementById("loader");
+  var rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var start = Date.now();
+  var h1 = document.querySelector(".split");
+  if(h1){
+    var words = h1.textContent.trim().split(/\s+/);
+    h1.setAttribute("aria-label", h1.textContent.trim());
+    h1.textContent = "";
+    words.forEach(function(w, i){
+      var o = document.createElement("span"); o.className = "w"; o.setAttribute("aria-hidden","true");
+      var n = document.createElement("span"); n.textContent = w;
+      n.style.transitionDelay = (0.05 + i * 0.07) + "s";
+      o.appendChild(n); h1.appendChild(o);
+      if(i < words.length - 1) h1.appendChild(document.createTextNode(" "));
+    });
+  }
+  function go(){ document.body.classList.add("ready"); startVideo(); }
+  function finish(){
+    if(!loader || loader.classList.contains("skip") || getComputedStyle(loader).display === "none"){ go(); return; }
+    var wait = Math.max(0, 950 - (Date.now() - start));
+    setTimeout(function(){
+      loader.classList.add("out");
+      setTimeout(go, 120);
+      setTimeout(function(){ loader.remove(); }, 800);
+      try{ sessionStorage.setItem("fa_seen","1"); }catch(e){}
+    }, wait);
+  }
+  var fired = false;
+  function once(){ if(!fired){ fired = true; finish(); } }
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(once); } else { once(); }
+  setTimeout(once, 1600);
+
+  /* Vidéo du hero : chargée après l'intro, version légère sur mobile, rien si économie de données */
+  function startVideo(){
+    var v = document.getElementById("heroVideo");
+    if(!v || v.dataset.on) return;
+    v.dataset.on = "1";
+    var save = navigator.connection && navigator.connection.saveData;
+    if(rm || save) return;
+    v.src = window.matchMedia("(max-width: 700px)").matches ? v.dataset.srcMobile : v.dataset.src;
+    var p = v.play(); if(p && p.catch) p.catch(function(){});
+  }
+})();
+
+(function(){
   var WA = "590690674028";
   var MAIL = "alexandre@financia-antilles.fr";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -137,4 +183,77 @@
   }, {passive:true});
   window.addEventListener("resize", update);
   update();
+  /* ===== Interactions ===== */
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* Boutons aimantés */
+  if(fine && !reduce){
+    document.querySelectorAll(".hero-cta .btn, .c-main .btn").forEach(function(b){
+      b.classList.add("magnet");
+      b.addEventListener("mousemove", function(e){
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * .18, y = (e.clientY - r.top - r.height / 2) * .3;
+        b.style.transform = "translate(" + x + "px," + y + "px)";
+      });
+      b.addEventListener("mouseleave", function(){ b.style.transform = ""; });
+    });
+    /* Halo des cartes */
+    document.querySelectorAll(".sol").forEach(function(c){
+      c.addEventListener("mousemove", function(e){
+        var r = c.getBoundingClientRect();
+        c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        c.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  }
+
+  /* Onde au clic sur les choix */
+  document.querySelectorAll(".opt").forEach(function(b){
+    b.addEventListener("pointerdown", function(e){
+      if(reduce) return;
+      var r = b.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2;
+      var s = document.createElement("span"); s.className = "ripple";
+      s.style.width = s.style.height = d + "px";
+      s.style.left = (e.clientX - r.left - d / 2) + "px";
+      s.style.top = (e.clientY - r.top - d / 2) + "px";
+      b.appendChild(s);
+      setTimeout(function(){ s.remove(); }, 600);
+    });
+  });
+
+  /* Icônes secteurs : longueur normalisée pour le tracé */
+  document.querySelectorAll(".sect .sec svg *").forEach(function(el){ el.setAttribute("pathLength","1"); });
+
+  /* Compteurs */
+  var counters = document.querySelectorAll("[data-count]");
+  function countUp(el){
+    var end = +el.dataset.count, t0 = null, dur = 1200;
+    if(reduce){ el.textContent = end; return; }
+    function step(t){
+      if(!t0) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 4)));
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if("IntersectionObserver" in window){
+    var co = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); co.unobserve(e.target); } });
+    }, {threshold:.6});
+    counters.forEach(function(c){ co.observe(c); });
+  } else counters.forEach(function(c){ c.textContent = c.dataset.count; });
+
+  /* Parallaxe photo Girardin */
+  var par = document.querySelector("[data-parallax] img");
+  if(par && !reduce){
+    var pf = function(){
+      var r = par.parentNode.getBoundingClientRect(), vh = window.innerHeight;
+      if(r.bottom < 0 || r.top > vh) return;
+      var p = (r.top + r.height / 2 - vh / 2) / vh;
+      par.style.translate = "0 " + (p * -40).toFixed(1) + "px";
+    };
+    window.addEventListener("scroll", function(){ requestAnimationFrame(pf); }, {passive:true});
+    pf();
+  }
 })();

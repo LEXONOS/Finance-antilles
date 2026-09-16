@@ -16,14 +16,43 @@
 <meta property="og:url" content="https://financia-antilles.fr/">
 <meta property="og:image" content="https://financia-antilles.fr/assets/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FinancialService", "name": "Financia Antilles", "url": "https://financia-antilles.fr", "telephone": "+590690674028", "email": "alexandre@financia-antilles.fr", "image": "https://financia-antilles.fr/assets/img/og.jpg", "address": {"@type": "PostalAddress", "streetAddress": "Immeuble Simkel, 1er étage, 3617 boulevard du Marquisat de Houelbourg, ZI de Jarry", "postalCode": "97122", "addressLocality": "Baie-Mahault", "addressRegion": "Guadeloupe", "addressCountry": "FR"}, "areaServed": ["Guadeloupe", "Martinique"], "founder": "Alexandre Buc", "vatID": "FR50937758894", "description": "Courtier en financement : défiscalisation Girardin industriel et agricole, crédit bancaire, crédit-bail, affacturage, subventions FEDER et FEADER."}</script>
+<link rel="preload" href="/assets/img/hero.jpg" as="image">
+<style>
+#loader{position:fixed;inset:0;z-index:999;background:#1d2b21;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 100%,0 100%);animation:ldFail .01s 3s forwards}
+#loader.out{clip-path:polygon(0 0,100% 0,100% 0,0 0);transition:clip-path .7s cubic-bezier(.77,0,.18,1)}
+#loader.skip{display:none}
+.ld-in{display:flex;flex-direction:column;align-items:center;gap:22px}
+.ld-logo{position:relative;width:min(300px,70vw);aspect-ratio:600/118}
+.ld-logo img{position:absolute;inset:0;width:100%;height:100%}
+.ld-mark{clip-path:inset(0 83.5% 0 0);animation:ldMark .45s .05s cubic-bezier(.2,.8,.2,1) both}
+.ld-word{clip-path:inset(0 0 0 16.5%);opacity:0;transform:translateX(-14px);animation:ldWord .5s .3s cubic-bezier(.2,.8,.2,1) forwards}
+.ld-bar{width:min(300px,70vw);height:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.ld-bar i{display:block;height:100%;background:#9cc03a;transform:scaleX(0);transform-origin:left;animation:ldBar .8s .1s cubic-bezier(.65,0,.35,1) forwards}
+@keyframes ldMark{from{clip-path:inset(100% 83.5% 0 0)}to{clip-path:inset(0 83.5% 0 0)}}
+@keyframes ldWord{to{opacity:1;transform:none}}
+@keyframes ldBar{to{transform:scaleX(1)}}
+@keyframes ldFail{to{visibility:hidden}}
+@media (prefers-reduced-motion:reduce){#loader{display:none}}
+</style>
+<script>try{if(sessionStorage.getItem("fa_seen"))document.documentElement.classList.add("seen")}catch(e){}</script>
+<style>.seen #loader{display:none}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FinancialService", "name": "Financia Antilles", "url": "https://financia-antilles.fr", "logo": "https://financia-antilles.fr/assets/img/logo.png", "telephone": "+590690674028", "email": "alexandre@financia-antilles.fr", "image": "https://financia-antilles.fr/assets/img/og.jpg", "address": {"@type": "PostalAddress", "streetAddress": "Immeuble Simkel, 1er étage, 3617 boulevard du Marquisat de Houelbourg, ZI de Jarry", "postalCode": "97122", "addressLocality": "Baie-Mahault", "addressRegion": "Guadeloupe", "addressCountry": "FR"}, "areaServed": ["Guadeloupe", "Martinique"], "founder": "Alexandre Buc", "vatID": "FR50937758894", "description": "Courtier en financement : défiscalisation Girardin industriel et agricole, crédit bancaire, crédit-bail, affacturage, subventions FEDER et FEADER."}</script>
 </head>
 <body>
+<div id="loader" aria-hidden="true">
+  <div class="ld-in">
+    <div class="ld-logo">
+      <img class="ld-mark" src="/assets/img/logo-blanc.png" alt="">
+      <img class="ld-word" src="/assets/img/logo-blanc.png" alt="">
+    </div>
+    <div class="ld-bar"><i></i></div>
+  </div>
+</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.8 13.8 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7A11.8 11.8 0 0 0 24 12a11.7 11.7 0 0 0-3.5-8.5z"/></symbol>
@@ -38,7 +67,7 @@
 <header>
   <div class="wrap nav">
     <a href="" class="logo" aria-label="Financia Antilles, accueil">
-      <img src="/assets/img/logo.png" alt="Financia Antilles" width="160" height="42" onload="this.parentNode.classList.add('has-img')">
+      <img src="/assets/img/logo.png" alt="Financia Antilles" width="214" height="42" onload="this.parentNode.classList.add('has-img')">
       <svg class="mark" viewBox="0 0 60 70" aria-hidden="true"><path class="dk" fill="#1d2b21" d="M0 0h60v40H42V28h8V10H13v60L0 60z"/><path class="dk" fill="#1d2b21" d="M22 18h20v10H22z"/><path fill="#8fb033" d="M22 38h18L22 58z"/></svg>
       <span class="logo-txt"><b>FINANCI<span>A</span></b><small>ANTILLES</small></span>
 
@@ -58,7 +87,7 @@
 </header>
 <main id="main">
 <section class="hero" aria-labelledby="h1">
-  <img class="hero-bg" src="/assets/img/hero.jpg" alt="" fetchpriority="high" onerror="this.remove()">
+  <video class="hero-bg" id="heroVideo" muted loop playsinline preload="none" poster="/assets/img/hero.jpg" aria-hidden="true" data-src="/assets/video/hero.mp4" data-src-mobile="/assets/video/hero-mobile.mp4"></video>
   <svg class="hero-lines" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path d="M760 700 L900 420 L1040 700 L1180 420 L1320 700 L1460 420"/>
     <path d="M760 420 L900 700 L1040 420 L1180 700 L1320 420 L1460 700"/>
@@ -70,7 +99,7 @@
 
   <div class="wrap hero-grid">
     <div>
-      <h1 id="h1" class="rise d1">Financez vos équipements aux Antilles, simplement.</h1>
+      <h1 id="h1" class="split">Financez vos équipements aux Antilles, simplement.</h1>
       <p class="hero-lead rise d2">Défiscalisation Girardin, crédit, crédit-bail, subventions. Vous nous dites ce dont vous avez besoin, on monte le dossier jusqu'au déblocage des fonds.</p>
       <div class="hero-cta rise d3">
         <a class="btn btn-wa" data-wa="Bonjour, je souhaite une étude de financement pour mon entreprise." href="https://wa.me/590690674028"><svg aria-hidden="true"><use href="#i-wa"/></svg>Écrire sur WhatsApp</a>
@@ -141,6 +170,15 @@
   </div>
 </section>
 
+<div class="stats" aria-label="Chiffres clés">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b><span data-count="20">0</span> ans</b><span>d'expérience Girardin avec Financ'ile</span></div>
+    <div class="stat reveal"><b data-count="6">0</b><span>leviers de financement combinables</span></div>
+    <div class="stat reveal"><b data-count="9">0</b><span>secteurs accompagnés, et bien d'autres</span></div>
+    <div class="stat reveal"><b>100 %</b><span>local, bureau à Jarry</span></div>
+  </div>
+</div>
+
 <section class="sec-pad" id="solutions" aria-labelledby="t-sol">
   <div class="wrap">
     <h2 id="t-sol" class="sec-title reveal">Une solution pour chaque projet</h2>
@@ -201,8 +239,8 @@
         </ol>
       </div>
       <div class="g-side">
-        <figure class="g-photo">
-          <img src="/assets/img/girardin.jpg" alt="Engin de chantier neuf en Guadeloupe" loading="lazy" width="1200" height="900" onerror="this.parentNode.remove()">
+        <figure class="g-photo" data-parallax>
+          <img src="/assets/img/girardin.jpg" alt="Pelleteuse sur un chantier" loading="lazy" width="1200" height="900" onerror="this.parentNode.remove()">
         </figure>
         <div class="benef reveal">
           <h3>Ce que vous y gagnez</h3>
@@ -288,7 +326,7 @@
   <div class="wrap">
     <div class="f-top">
       <a href="/" class="logo" aria-label="Financia Antilles, accueil">
-        <img src="/assets/img/logo-blanc.png" alt="Financia Antilles" width="160" height="42" onload="this.parentNode.classList.add('has-img')">
+        <img src="/assets/img/logo-blanc.png" alt="Financia Antilles" width="214" height="42" onload="this.parentNode.classList.add('has-img')">
       <svg class="mark" viewBox="0 0 60 70" aria-hidden="true"><path class="dk" fill="#1d2b21" d="M0 0h60v40H42V28h8V10H13v60L0 60z"/><path class="dk" fill="#1d2b21" d="M22 18h20v10H22z"/><path fill="#8fb033" d="M22 38h18L22 58z"/></svg>
       <span class="logo-txt"><b>FINANCI<span>A</span></b><small>ANTILLES</small></span>
 

@@ -18,30 +18,20 @@ assets/fonts/            Montserrat hébergée en local (pas de Google Fonts = p
 assets/img/              images (voir ci-dessous)
 favicon.svg, robots.txt, sitemap.xml, vercel.json
 
-IMAGES A DEPOSER DANS assets/img/ (noms EXACTS, en .jpg, compressées sur squoosh.app)
-Tant qu'une image manque, le site s'affiche proprement sans elle.
+IMAGES ET VIDEO (déjà intégrées, rien à faire)
+assets/video/hero.mp4          vidéo récolte de canne, 1600 px, 4 Mo (ordinateur)
+assets/video/hero-mobile.mp4   même vidéo en 960 px, 1,4 Mo (téléphone)
+assets/img/hero.jpg            image affichée pendant le chargement de la vidéo
+assets/img/girardin.jpg        pelleteuse
+assets/img/contact.jpg         vue aérienne des Antilles
+assets/img/logo.png            vrai logo détouré (fond transparent)
+assets/img/logo-blanc.png      version blanche (pied de page, écran de chargement)
+assets/img/og.jpg              image de partage WhatsApp / Facebook
+favicon.png, apple-touch-icon.png : icônes onglet et iPhone
 
-hero.jpg        2000 x 1200, < 350 Ko
-                Récolte de canne à sucre, engin agricole au champ, ou chantier avec engins.
-                Recherche Unsplash : "sugarcane harvest", "tractor field", "excavator construction site"
-                Idéal : la photo de la couverture de la plaquette (demander l'original à CitronMer Communication).
-
-girardin.jpg    1200 x 900, < 250 Ko
-                Matériel neuf : pelleteuse, chariot élévateur, camion, four de boulangerie.
-                Unsplash : "excavator", "forklift warehouse", "industrial machinery"
-
-contact.jpg     1200 x 900, < 250 Ko (affichée assombrie derrière les coordonnées)
-                Vue de Guadeloupe ou de la marina, ou photo des bureaux / d'Alexandre.
-                Unsplash : "Guadeloupe", "caribbean coast town"
-                Idéal : la photo aérienne du dos de la plaquette.
-
-logo.png        logo couleur, fond transparent, ~480 px de large (s'affiche à la place du logo recréé)
-logo-blanc.png  même logo en version blanche pour le pied de page
-
-og.jpg / apple-touch-icon.png : déjà fournis (image de partage WhatsApp/Facebook et icône iPhone).
-
-Si les photos ne viennent PAS d'Unsplash, modifier la ligne "Crédits photographiques"
-dans mentions-legales.html.
+La vidéo ne se lance pas si le visiteur a activé "économie de données"
+ou "réduire les animations" : l'image hero.jpg s'affiche à la place.
+L'écran de chargement ne s'affiche qu'à la première page vue de la visite.
 
 A FAIRE VALIDER PAR ALEXANDRE
 - Étapes 3 et 4 du bloc "Le Girardin, en clair" (formulation volontairement générale).
