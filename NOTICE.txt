@@ -1,0 +1,20 @@
+FINANCIA ANTILLES - BLOC GIRARDIN : NOUVEAU TEXTE + VIDEO PELLETEUSE (18/09/2026)
+
+Ce zip REMPLACE le précédent (financia-maj-girardin.zip) : inutile de pousser l'ancien.
+
+Glisser tout le contenu tel quel à la racine du repo GitHub :
+  index.html                         -> racine (remplace)
+  LISEZMOI.txt                       -> racine (remplace)
+  css/style.css                      -> css/ (remplace)
+  js/main.js                         -> js/ (remplace)
+  assets/img/girardin-v2.jpg         -> assets/img/ (NOUVEAU)
+  assets/video/girardin.mp4          -> assets/video/ (NOUVEAU)
+  assets/video/girardin-mobile.mp4   -> assets/video/ (NOUVEAU)
+
+Facultatif : supprimer assets/img/girardin.jpg du repo (l'ancienne pelleteuse, plus utilisée).
+
+Changements :
+- Texte : intro "Une aide de l'État pour financer votre matériel neuf..." et "Une aide immédiate sur le coût de votre matériel" (le mot subvention est retiré du Girardin)
+- Photo remplacée par une vidéo en boucle (pelleteuse neuve, ciel bleu), chargée seulement quand on arrive sur le bloc, en pause hors écran
+- Image fixe affichée à la place si économie de données ou animations réduites
+- L'image a un nouveau nom (girardin-v2.jpg) car le dossier assets est mis en cache 1 an : avec l'ancien nom, Alexandre aurait continué à voir l'ancienne photo

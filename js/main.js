@@ -262,14 +262,39 @@
 
   /* Parallaxe photo Girardin */
   var par = document.querySelector("[data-parallax] img");
+  var parV = document.querySelector("[data-parallax] video");
   if(par && !reduce){
     var pf = function(){
       var r = par.parentNode.getBoundingClientRect(), vh = window.innerHeight;
       if(r.bottom < 0 || r.top > vh) return;
       var p = (r.top + r.height / 2 - vh / 2) / vh;
       par.style.translate = "0 " + (p * -40).toFixed(1) + "px";
+      if(parV) parV.style.translate = par.style.translate;
     };
     window.addEventListener("scroll", function(){ requestAnimationFrame(pf); }, {passive:true});
     pf();
+  }
+
+  /* Vidéo Girardin : chargée seulement à l'approche, en pause hors écran */
+  var gv = document.getElementById("girVideo");
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if(gv && (reduce || saveData || !("IntersectionObserver" in window))){
+    gv.remove();
+  } else if(gv){
+    gv.addEventListener("playing", function(){ gv.classList.add("on"); }, {once:true});
+    gv.addEventListener("error", function(){ gv.remove(); }, {once:true});
+    var gio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          if(!gv.getAttribute("src")){
+            gv.src = window.matchMedia("(max-width: 700px)").matches ? gv.dataset.srcMobile : gv.dataset.src;
+          }
+          var pr = gv.play(); if(pr && pr.catch) pr.catch(function(){});
+        } else if(gv.getAttribute("src")){
+          gv.pause();
+        }
+      });
+    }, {rootMargin:"300px 0px"});
+    gio.observe(gv.parentNode);
   }
 })();

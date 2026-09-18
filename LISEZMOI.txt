@@ -22,7 +22,9 @@ IMAGES ET VIDEO (déjà intégrées, rien à faire)
 assets/video/hero.mp4          vidéo récolte de canne, 1600 px, 4 Mo (ordinateur)
 assets/video/hero-mobile.mp4   même vidéo en 960 px, 1,4 Mo (téléphone)
 assets/img/hero.jpg            image affichée pendant le chargement de la vidéo
-assets/img/girardin.jpg        pelleteuse
+assets/img/girardin-v2.jpg      image de la pelleteuse (affichée avant la vidéo, et seule si économie de données)
+assets/video/girardin.mp4      vidéo pelleteuse en boucle, 960 px, 1,6 Mo (ordinateur)
+assets/video/girardin-mobile.mp4  même vidéo en 640 px, 0,8 Mo (téléphone)
 assets/img/contact.jpg         vue aérienne des Antilles
 assets/img/logo.png            vrai logo détouré (fond transparent)
 assets/img/logo-blanc.png      version blanche (pied de page)
